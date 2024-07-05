@@ -60,5 +60,5 @@ func main() {
 	mux := chi.NewRouter()
 	mux.Get("/get", Get)
 	mux.Post("/post",Post)
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":8080", mux)
 }

@@ -7,3 +7,6 @@ test:
 
 	# Generate and open an HTML coverage report
 	go tool cover -html=coverage.out -o coverage.html
+
+run:
+	go run main.go
