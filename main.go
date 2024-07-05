@@ -24,6 +24,10 @@ func Get(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(fmt.Sprintf("Total vowel is %d ", cnt)))
 }
 
+func Post(w http.ResponseWriter,r *http.Request){
+	
+}
+
 func main() {
 	http.HandleFunc("/get", Get)
 	http.ListenAndServe(":8080", nil)

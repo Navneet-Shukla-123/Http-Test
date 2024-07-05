@@ -95,6 +95,10 @@ func Get(w http.ResponseWriter, r *http.Request) <span class="cov8" title="1">{
         <span class="cov8" title="1">w.Write([]byte(fmt.Sprintf("Total vowel is %d ", cnt)))</span>
 }
 
+func Post(w http.ResponseWriter,r *http.Request){<span class="cov0" title="0">
+        
+}</span>
+
 func main() <span class="cov0" title="0">{
         http.HandleFunc("/get", Get)
         http.ListenAndServe(":8080", nil)
