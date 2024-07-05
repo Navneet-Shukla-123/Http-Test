@@ -59,5 +59,6 @@ func Post(w http.ResponseWriter, r *http.Request) {
 func main() {
 	mux := chi.NewRouter()
 	mux.Get("/get", Get)
+	mux.Post("/post",Post)
 	http.ListenAndServe(":8080", nil)
 }

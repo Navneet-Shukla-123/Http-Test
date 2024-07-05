@@ -55,7 +55,7 @@
 			<div id="nav">
 				<select id="files">
 				
-				<option value="file0">test/main.go (66.7%)</option>
+				<option value="file0">test/main.go (85.7%)</option>
 				
 				</select>
 			</div>
@@ -116,20 +116,21 @@ func Post(w http.ResponseWriter, r *http.Request) <span class="cov8" title="1">{
                 return
         }</span>
 
-        <span class="cov0" title="0">cnt := 0
-        for _, val := range name </span><span class="cov0" title="0">{
-                if val == 'a' || val == 'e' || val == 'i' || val == 'o' || val == 'u' </span><span class="cov0" title="0">{
+        <span class="cov8" title="1">cnt := 0
+        for _, val := range name </span><span class="cov8" title="1">{
+                if val == 'a' || val == 'e' || val == 'i' || val == 'o' || val == 'u' </span><span class="cov8" title="1">{
                         cnt++
                 }</span>
         }
 
-        <span class="cov0" title="0">w.WriteHeader(http.StatusOK)
+        <span class="cov8" title="1">w.WriteHeader(http.StatusOK)
         fmt.Fprintf(w, "Total vowel is %d", cnt)</span>
 }
 
 func main() <span class="cov0" title="0">{
         mux := chi.NewRouter()
         mux.Get("/get", Get)
+        mux.Post("/post",Post)
         http.ListenAndServe(":8080", nil)
 }</span>
 </pre>

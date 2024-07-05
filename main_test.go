@@ -115,4 +115,39 @@ func TestPost(t *testing.T) {
 			t.Errorf("expected body %q, got %q", expected, bodyBuf.String())
 		}
 	})
+
+	t.Run("valid name", func(t *testing.T) {
+
+		// valid json with name
+
+		body := RequestBody{
+			Name: "Navneet",
+		}
+
+		bodyBytes, _ := json.Marshal(body)
+		req := httptest.NewRequest(http.MethodPost, "/post", bytes.NewBuffer(bodyBytes))
+		req.Header.Set("Content-Type", "application/json")
+
+		w := httptest.NewRecorder()
+
+		Post(w, req)
+
+		res := w.Result()
+		defer res.Body.Close()
+
+		if res.StatusCode != http.StatusOK {
+			t.Errorf("expected status %d, got %d", http.StatusOK, res.StatusCode)
+		}
+
+		expected := "Total vowel is 3"
+
+		bodyBuf := new(bytes.Buffer)
+		bodyBuf.ReadFrom(res.Body)
+
+		if strings.TrimSpace(bodyBuf.String()) != expected {
+			t.Errorf("expected body %q, got %q", expected, bodyBuf.String())
+
+		}
+	})
+
 }
