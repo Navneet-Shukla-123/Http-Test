@@ -1,8 +1,16 @@
 mode: set
-test/main.go:8.50,11.21 2 1
-test/main.go:11.21,14.3 2 1
-test/main.go:16.2,18.28 2 1
-test/main.go:18.28,19.73 1 1
-test/main.go:19.73,21.4 1 1
-test/main.go:24.2,24.57 1 1
-test/main.go:27.13,30.2 2 0
+test/main.go:11.50,14.21 2 1
+test/main.go:14.21,17.3 2 1
+test/main.go:19.2,21.28 2 1
+test/main.go:21.28,22.73 1 1
+test/main.go:22.73,24.4 1 1
+test/main.go:27.2,27.57 1 1
+test/main.go:34.51,37.16 3 1
+test/main.go:37.16,40.3 2 1
+test/main.go:42.2,43.20 2 1
+test/main.go:43.20,46.3 2 1
+test/main.go:48.2,49.27 2 0
+test/main.go:49.27,50.73 1 0
+test/main.go:50.73,52.4 1 0
+test/main.go:55.2,56.42 2 0
+test/main.go:59.13,63.2 3 0

@@ -1,6 +1,8 @@
 package main
 
 import (
+	"bytes"
+	"encoding/json"
 	"io"
 	"net/http"
 	"net/http/httptest"
@@ -53,4 +55,64 @@ func TestGet(t *testing.T) {
 
 	})
 
+}
+
+func TestPost(t *testing.T) {
+	t.Run("error in decoding the body", func(t *testing.T) {
+
+		// invalid json
+		req := httptest.NewRequest(http.MethodPost, "/post", bytes.NewBufferString("invalid json"))
+		req.Header.Set("Content-Type", "application/json")
+		w := httptest.NewRecorder()
+
+		Post(w, req)
+
+		res := w.Result()
+		defer res.Body.Close()
+
+		if res.StatusCode != http.StatusBadRequest {
+			t.Errorf("expected status %d, got %d", http.StatusBadRequest, res.StatusCode)
+		}
+
+		expected := "invalid request\n"
+
+		body := new(bytes.Buffer)
+		body.ReadFrom(res.Body)
+		if body.String() != expected {
+			t.Errorf("expected body %q, got %q", expected, body.String())
+		}
+
+	})
+
+	t.Run("name is empty", func(t *testing.T) {
+
+		// valid json
+
+		body := RequestBody{
+			Name: "",
+		}
+
+		bodyBytes, _ := json.Marshal(body)
+		req := httptest.NewRequest(http.MethodPost, "/post", bytes.NewBuffer(bodyBytes))
+		req.Header.Set("Content-Type", "applicattion/json")
+		w := httptest.NewRecorder()
+
+		Post(w, req)
+
+		res := w.Result()
+		defer res.Body.Close()
+
+		if res.StatusCode != http.StatusBadRequest {
+			t.Errorf("expected status %d, got %d", http.StatusBadRequest, res.StatusCode)
+		}
+
+		expected := "name is empty\n"
+		bodyBuf := new(bytes.Buffer)
+
+		bodyBuf.ReadFrom(res.Body)
+
+		if bodyBuf.String() != expected {
+			t.Errorf("expected body %q, got %q", expected, bodyBuf.String())
+		}
+	})
 }
